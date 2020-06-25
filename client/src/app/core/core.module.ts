@@ -6,21 +6,21 @@ import { CommonModule } from '@angular/common';
  * prevents importing the module into somewhere else than root App Module.
  */
 export abstract class EnsureImportedOnceModule {
-  protected constructor(targetModule: any) {
-      if (targetModule) {
-          throw new Error(`${targetModule.constructor.name} has already been loaded.`);
-      }
-  }
+	protected constructor(targetModule: any) {
+			if (targetModule) {
+					throw new Error(`${targetModule.constructor.name} has already been loaded.`);
+			}
+	}
 }
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+	declarations: [],
+	imports: [
+		CommonModule
+	]
 })
 export class CoreModule extends EnsureImportedOnceModule {
-  public constructor(@SkipSelf() @Optional() parent: CoreModule) {
-      super(parent);
-  }
+	public constructor(@SkipSelf() @Optional() parent: CoreModule) {
+			super(parent);
+	}
 }
