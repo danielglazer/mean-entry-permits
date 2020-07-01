@@ -1,1 +1,4 @@
-<p>login works!</p>
+<header>{{ type.pageName }}</header>
+<form [formGroup]="type.pageName === 'signin' ? signupForm : signinForm">
+	<button mat-flat-button color="warn">Warn</button>
+</form>

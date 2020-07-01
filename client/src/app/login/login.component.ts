@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { LoginPageType, LoginPage } from './login-page.model';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
 	selector: 'app-login',
@@ -6,7 +9,23 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-	constructor() {}
+	type: LoginPage;
 
-	ngOnInit(): void {}
+	signinForm = new FormGroup({
+		id: new FormControl(''),
+		password: new FormControl(''),
+	});
+	signupForm = new FormGroup({
+		id: new FormControl(''),
+		password: new FormControl(''),
+		name: new FormControl(''),
+	});
+
+	constructor(activatedRoute: ActivatedRoute) {
+		this.type = new LoginPage(
+			activatedRoute.snapshot.url.toString() as LoginPageType
+		);
+	}
+
+	ngOnInit() {}
 }
